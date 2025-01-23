@@ -21,13 +21,15 @@ ALLOWED_ORIGINS = [
     "https://news-check-backend-production.up.railway.app",  # Backend URL
 ]
 
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,  # Sadece belirtilen kaynaklara izin ver
-    allow_credentials=True,  # Credential (ör. cookie) gönderimine izin ver
-    allow_methods=["*"],  # Tüm HTTP metodlarına izin ver
-    allow_headers=["*"],  # Tüm headerlara izin ver
+    allow_origins=["*"],  # Allow all origins for now (use specific domains in production)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
 )
+
 
 @app.post("/predict")
 async def predict_news(request: PredictionRequest):
