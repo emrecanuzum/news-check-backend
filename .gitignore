@@ -1,0 +1,16 @@
+# Sanal ortam dosyaları
+env/
+venv/
+
+# Derlenmiş Python dosyaları
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE ve editör dosyaları
+.vscode/
+.idea/
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
