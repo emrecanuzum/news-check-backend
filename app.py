@@ -16,12 +16,17 @@ class PredictionRequest(BaseModel):
 translator = Translator()
 model = joblib.load("LogisticModel.joblib")
 
+ALLOWED_ORIGINS = [
+    "chrome-extension://nekipfkffnlcjiakboiknjfnmlpemopb",  # Chrome extension ID
+    "https://news-check-backend-production.up.railway.app",  # Backend URL
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend origin
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers
+    allow_origins=ALLOWED_ORIGINS,  # Sadece belirtilen kaynaklara izin ver
+    allow_credentials=True,  # Credential (ör. cookie) gönderimine izin ver
+    allow_methods=["*"],  # Tüm HTTP metodlarına izin ver
+    allow_headers=["*"],  # Tüm headerlara izin ver
 )
 
 @app.post("/predict")
